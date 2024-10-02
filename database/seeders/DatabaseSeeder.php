@@ -12,11 +12,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(PermessionDBSeed::class);
-        $this->call(RoleDBSeed::class);
-        $this->call(AdminstratorDBSeed::class);
-        $this->call(SettingDBSeeder::class);
-        $this->call(HomePageMetaDBSeed::class);
+        // $this->call(PermessionDBSeed::class);
+        // $this->call(RoleDBSeed::class);
+        // $this->call(AdminstratorDBSeed::class);
+        // $this->call(SettingDBSeeder::class);
+        // $this->call(HomePageMetaDBSeed::class);
+
+        $this->call(CreateAdminUserSeeder::class);
+        $this->call(SettingSeeder::class);
+
 
      /*   $this->call(UsersDBSeed::class);
         $this->call(CustomerDBSeed::class);

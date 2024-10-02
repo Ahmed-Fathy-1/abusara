@@ -15,7 +15,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable , SoftDeletes , HasRoles;
+    use HasApiTokens, HasFactory, Notifiable , SoftDeletes , HasRoles, UploadFileTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -43,6 +43,8 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
     public function getJWTIdentifier()
     {
         return $this->getKey();

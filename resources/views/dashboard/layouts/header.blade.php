@@ -55,7 +55,7 @@
             ></i>
           </button>
 
-        <form action="#" method="POST">
+        <form action="{{route('logout')}}" method="POST">
             @csrf
             <button>Logout</button>
         </form>

@@ -12,10 +12,11 @@
 
     <title>@yield('title')</title>
 
-      {{-- @php
+      @php
           $setting = \App\Models\Setting::findOrFail(1);
       @endphp
-      <link rel="icon" type="image/png" class="h-11 w-11" src="{{ asset('storage/uploads/images/settings/'.$setting->image) }}" /> --}}
+      <link rel="icon" type="image/png" class="h-11 w-11" src="{{ asset('storage/uploads/images/settings/'.$setting->image) }}" />
+      
     {{-- <link rel="stylesheet" href="{{ asset(in_array(app()->getLocale(), ['ar']) ? 'assets/css/app-ar.css' : 'assets/css/app.css') }}">
     <script src="{{ asset(in_array(app()->getLocale(), ['ar']) ? 'assets/js/app-ar.js' : 'assets/js/app.js') }}" defer></script> --}}
 
