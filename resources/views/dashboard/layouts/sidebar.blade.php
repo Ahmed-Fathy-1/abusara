@@ -2,13 +2,13 @@
     <div class="flex h-full grow flex-col border-r border-slate-150 bg-white dark:border-navy-700 dark:bg-navy-750">
         <div class="flex items-center justify-between px-3 pt-4">
             <!-- Application Logo -->
-            {{-- @php
+            @php
                 $setting = \App\Models\Setting::findOrFail(1);
-            @endphp --}}
+            @endphp
 
             <div class="flex justify-center w-full">
                 <a href="https://aitech.net.au/v2/" class="block">
-                    {{-- <img width="50" height="20" src="{{ asset('storage/uploads/images/settings/'.$setting->image) }}" alt="logo"> --}}
+                    <img width="100" height="50" src="{{ asset('storage/uploads/images/settings/'.$setting->image) }}" alt="logo">
                 </a>
             </div>
 
@@ -183,7 +183,7 @@
 
                                 <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
-                                        <a href="#" class="">
+                                        <a href="{{ route('users.index') }}#" class="">
                                             <span>Users</span>
                                         </a>
                                     </li>
@@ -193,7 +193,7 @@
 
                                 <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
-                                        <a href="#" class="">
+                                        <a href="{{ route('roles.index') }}" class="">
                                             <span>Roles</span>
                                         </a>
                                     </li>
@@ -222,7 +222,7 @@
 
 
                                             <li>
-                                                <a href="#"
+                                                <a href="{{ route('settings.edit', 1) }}"
                                                     class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
                                                     data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
                                                     data-active-class="font-medium text-primary dark:text-accent-light">
@@ -238,8 +238,7 @@
 
 
                                             <li>
-                                                {{-- <a href="{{ route('profile', auth()->user()->id) }}" --}}
-                                                <a href="#"
+                                                <a href="{{ route('profile', auth()->user()->id) }}"
                                                     class="nav-link flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4 text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
                                                     data-default-class="text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50"
                                                     data-active-class="font-medium text-primary dark:text-accent-light">

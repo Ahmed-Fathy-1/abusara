@@ -10,10 +10,10 @@
     />
 
     <title>Lineone - Sign Up v1</title>
-    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="icon" type="image/png" href="{{asset('SuperAdmin/assets/images/favicon.png')}}" />
 
     <!-- CSS Assets -->
-    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="{{asset('SuperAdmin/assets/css/app.css')}}" />
 
     <!-- Javascript Assets -->
     <script src="js/app.js" defer></script>

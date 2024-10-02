@@ -1,27 +1,34 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\SuperAdmin;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use App\Http\Traits\Utils\UploadFileTrait;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable , SoftDeletes , HasRoles, UploadFileTrait;
+    use HasApiTokens, HasFactory, Notifiable, UploadFileTrait, HasRoles;
 
+    protected $guard_name = 'web';
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'image',
+    ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -43,30 +50,16 @@ class User extends Authenticatable implements JWTSubject
         'password' => 'hashed',
     ];
 
+    protected $append = ['image_with_full_path'];
 
-    public function getJWTIdentifier()
+    protected $imageFolder = 'images/users';
+
+    protected function imageWithFullPath(): Attribute
     {
-        return $this->getKey();
+        return Attribute::make(
+            get: fn () => $this->getFileWithFullPath($this->image, $this->imageFolder),
+        );
     }
 
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
 
-    public function favorites() {
-        return $this->belongsToMany(Product::class, 'favourites');
-    }
-    public function orders(){
-        return $this->hasMany(Order::class);
-    }
-
-    public function addresses(){
-        return $this->hasMany(Address::class,'user_id');
-    }
 }
