@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\SuperAdmin\Dashboard\PackageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\TenantController;
+use App\Http\Controllers\SuperAdmin\Dashboard\PaymentMethodController;
 
 
 /*
@@ -29,6 +31,11 @@ foreach (config('tenancy.central_domains') as $domain) {
             return view('home');
         });
         Route::get('login', [TenantController::class, 'login']);
+
+        Route::resources([
+            'PaymentMethod'=> PaymentMethodController::class,
+            'packages' => PackageController::class,
+        ]);
 
     });
 }
