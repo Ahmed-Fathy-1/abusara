@@ -24,3 +24,4 @@ foreach (config('tenancy.central_domains') as $domain) {
         Route::post('/pay', [TenantController::class, 'pay']);
     });
 }
+
