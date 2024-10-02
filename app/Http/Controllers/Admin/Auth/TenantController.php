@@ -29,6 +29,11 @@ class TenantController extends Controller
         return view('Admin.pages.stripe.charge');
     }
 
+    public function login()
+    {
+        return view('SuperAdmin.auth.login');
+    }
+
     public function pay()
     {
         $stripe = new \Stripe\StripeClient('sk_test_51OOMOtK2t4I8yGl8zwciXoc0RQSyxXM4aO97Ugl6dMftlc8Z4oCkVoTnzJUv7uZ5rKvXQxoD0cFrxQFJ4EmsfFnw00BYwKrA2U');
@@ -76,7 +81,7 @@ class TenantController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Email could not be sent. Please try again.');
         }
-        
+
 
         // Use the `image` method from imagesTrait to handle image upload
         // if ($request->hasFile('image')) {
