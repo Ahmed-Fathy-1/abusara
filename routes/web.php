@@ -55,3 +55,9 @@ foreach (config('tenancy.central_domains') as $domain) {
         });
     });
 }
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 7b7dd9ee9c6cdc8671768e0e04b2e453204c310d
