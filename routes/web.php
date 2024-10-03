@@ -25,7 +25,7 @@ foreach (config('tenancy.central_domains') as $domain) {
     Route::domain($domain)->group(function () {
         // your actual routes
 
-        Route::group(['middleware' => ['role:Super Admin']], function () {
+        // Route::group(['middleware' => ['role:Super Admin']], function () {
 
             Route::get('/', function () {
                 return redirect()->route('homePage');
@@ -57,6 +57,6 @@ foreach (config('tenancy.central_domains') as $domain) {
                 // tenants
                 Route::resource('tenants', TenantController::class);
             });
-        });
+        // });
     });
 }
