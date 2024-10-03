@@ -201,6 +201,46 @@
                                 <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
 
 
+
+
+                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                    <li>
+                                        <a href="{{ route('PaymentMethod.index') }}" class="">
+                                            <span>Payment Methods</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+
+
+                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                    <li>
+                                        <a href="{{ route('packages.index') }}" class="">
+                                            <span>Packages</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+
+                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                    <li>
+                                        <a href="{{ route('Item.index') }}" class="">
+                                            <span>Items</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+
+                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                    <li>
+                                        <a href="{{ route('PaymentTransaction.index') }}" class="">
+                                            <span>Payment Transaction</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+
+
                                 <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li class="ac nav-parent [&amp;.is-active_svg]:rotate-90 [&amp;.is-active_.ac-trigger]:font-semibold [&amp;.is-active_.ac-trigger]:text-slate-800 dark:[&amp;.is-active_.ac-trigger]:text-navy-50 js-enabled"
                                         data-nav-parent-index="8" id="ac-8">
