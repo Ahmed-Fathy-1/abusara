@@ -79,12 +79,12 @@ Route::middleware([
         //     exit();
         // });
 
-        //Route::get('/', function () {
+        // Route::get('/', function () {
         //    return view('welcome');
-        //});
+        // });
 
         Route::get('/', [AdminLoginController::class, 'getLogin'])->name('get-name');
-        
+
         Route::get('sitemap.xml', [PublicDataController::class, 'sitemapXml']);
 
         Route::group(['prefix' => 'admin'], function () {

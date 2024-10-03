@@ -34,7 +34,7 @@
 
 
 
-                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                {{-- <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li class="ac nav-parent [&amp;.is-active_svg]:rotate-90 [&amp;.is-active_.ac-trigger]:font-semibold [&amp;.is-active_.ac-trigger]:text-slate-800 dark:[&amp;.is-active_.ac-trigger]:text-navy-50 js-enabled"
                                         data-nav-parent-index="0" id="ac-0">
                                         <button
@@ -70,7 +70,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                                <div class="my-3 mx-4 h-px bg-slate-200 dark:bg-navy-500"></div>
+                                <div class="my-3 mx-4 h-px bg-slate-200 dark:bg-navy-500"></div> --}}
 
 
                                 {{-- @can('about_us-edit')
@@ -88,8 +88,8 @@
 
                                 <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li>
-                                        <a href="#" class="">
-                                            <span>Tenants</span>
+                                        <a href="{{route('tenants.index')}}" class="">
+                                            <span>Domains</span>
                                         </a>
                                     </li>
                                 </ul>
