@@ -4,10 +4,11 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\SuperAdmin\Package;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Models\SuperAdmin\PaymentMethod;
 use Illuminate\Notifications\Notifiable;
-use App\Http\Traits\Utils\UploadFileTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -68,5 +69,13 @@ class User extends Authenticatable implements JWTSubject
 
     public function addresses(){
         return $this->hasMany(Address::class,'user_id');
+    }
+
+
+    public function PaymentMethods(){
+        return $this->hasMany(PaymentMethod::class,'user_id','id');
+    }
+    public function Packages(){
+        return $this->hasMany(Package::class,'user_id','id');
     }
 }

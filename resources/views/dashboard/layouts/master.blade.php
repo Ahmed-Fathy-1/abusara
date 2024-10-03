@@ -62,9 +62,8 @@
       {{-- @include('dashboard.layouts.right-sidebar') --}}
 
       <!-- Main Content Wrapper -->
-      @yield('main')
-
- <!-- Footer Script -->
+       @yield('main')
+  <!-- Footer Script -->
  @include('dashboard.layouts.footer-script')
       @stack('scripts')
     </div>
