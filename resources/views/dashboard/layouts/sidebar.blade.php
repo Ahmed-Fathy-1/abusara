@@ -73,16 +73,16 @@
                                 <div class="my-3 mx-4 h-px bg-slate-200 dark:bg-navy-500"></div>
 
 
-                                {{-- @can('about_us-edit')
-                                <ul class="flex flex-1 flex-col px-4 font-inter">
-                                    <li>
-                                        <a href="{{ route('about_us.edit', 1) }}" class="">
-                                            <span>About Us</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
-                                @endcan --}}
+{{--                                --}}{{-- @can('aboutUs-edit')--}}
+{{--                                <ul class="flex flex-1 flex-col px-4 font-inter">--}}
+{{--                                    <li>--}}
+{{--                                        <a href="{{ route('aboutUs.edit', 1) }}" class="">--}}
+{{--                                            <span>About Us</span>--}}
+{{--                                        </a>--}}
+{{--                                    </li>--}}
+{{--                                </ul>--}}
+{{--                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>--}}
+{{--                                @endcan --}}
 
 
 
@@ -200,6 +200,17 @@
                                 </ul>
                                 <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
 
+                                <ul class="flex flex-1 flex-col px-4 font-inter">
+                                    <li>
+                                        <a href="{{ route('aboutUs.edit', 1) }}" class="">
+                                            <span>About Us</span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+
+                                <div class="my-3 mx-4 h-px bg-slate-100 dark:bg-navy-500"></div>
+
 
                                 <ul class="flex flex-1 flex-col px-4 font-inter">
                                     <li class="ac nav-parent [&amp;.is-active_svg]:rotate-90 [&amp;.is-active_.ac-trigger]:font-semibold [&amp;.is-active_.ac-trigger]:text-slate-800 dark:[&amp;.is-active_.ac-trigger]:text-navy-50 js-enabled"
@@ -219,6 +230,7 @@
                                         <ul class="ac-panel" id="ac-panel-8" role="region"
                                             aria-labelledby="ac-trigger-8"
                                             style="transition-duration: 200ms; height: 0px;">
+
 
 
                                             <li>

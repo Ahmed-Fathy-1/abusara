@@ -34,7 +34,7 @@ class SettingController extends Controller
         $record = Setting::findOrFail($id);
 
         $data = $request->validated();
-        
+
         if (isset($data['image'])) {
             $data['image'] = $this->updateFile($data['image'], $record->image, $this->filePath);
         }

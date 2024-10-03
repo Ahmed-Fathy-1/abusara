@@ -20,16 +20,18 @@ class DatabaseSeeder extends Seeder
 
         $this->call(CreateAdminUserSeeder::class);
         $this->call(SettingSeeder::class);
+        $this->call(AboutUsSeeder::class);
 
 
-     /*   $this->call(UsersDBSeed::class);
-        $this->call(CustomerDBSeed::class);
-        $this->call(CategoryDBSeed::class);
-        $this->call(bannerDBSeed::class);
-        $this->call(UnitDBSeed::class);
-        $this->call(ProductDBSeed::class);
-        $this->call(CouponDBSeed::class);
-        $this->call(CategoryMetaDBSeed::class);
-        $this->call(OrderDBSeed::class);*/
+
+        /*   $this->call(UsersDBSeed::class);
+           $this->call(CustomerDBSeed::class);
+           $this->call(CategoryDBSeed::class);
+           $this->call(bannerDBSeed::class);
+           $this->call(UnitDBSeed::class);
+           $this->call(ProductDBSeed::class);
+           $this->call(CouponDBSeed::class);
+           $this->call(CategoryMetaDBSeed::class);
+           $this->call(OrderDBSeed::class);*/
     }
 }

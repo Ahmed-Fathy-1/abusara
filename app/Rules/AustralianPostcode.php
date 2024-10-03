@@ -3,7 +3,7 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use Adrnz\PostcodeValidator\Validator;
+use Illuminate\Validation\Validator;
 
 
 class AustralianPostcode implements Rule
