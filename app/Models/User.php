@@ -15,7 +15,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable , SoftDeletes , HasRoles, UploadFileTrait;
+    use HasApiTokens, HasFactory, Notifiable , SoftDeletes , HasRoles;
 
     /**
      * The attributes that are mass assignable.
