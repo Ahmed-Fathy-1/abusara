@@ -6,8 +6,10 @@ namespace App\Models\SuperAdmin;
 
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\SuperAdmin\Package;
 use Illuminate\Notifications\Notifiable;
 use App\Http\Traits\Utils\UploadFileTrait;
+use App\Models\Tenant;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,7 +19,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable, UploadFileTrait, HasRoles;
 
     protected $guard_name = 'web';
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -28,6 +30,7 @@ class User extends Authenticatable
         'email',
         'password',
         'image',
+        'phone',
     ];
 
     /**
@@ -47,6 +50,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'phone_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
 
@@ -61,5 +65,17 @@ class User extends Authenticatable
         );
     }
 
+    public  function tenants()
+    {
+        return $this->hasMany(Tenant::class);
+    }
+
+    public function PaymentMethods(){
+        return $this->hasMany(PaymentMethod::class,'user_id','id');
+    }
+    
+    public function Packages(){
+        return $this->hasMany(Package::class,'user_id','id');
+    }
 
 }

@@ -14,7 +14,7 @@
 <main class="main-content w-full px-[var(--margin-x)] pb-8">
     <div class="flex items-center space-x-4 py-5 lg:py-6">
         <h2 class="text-xl font-medium text-slate-800 dark:text-navy-50 lg:text-2xl">
-            Payment Methods
+           packages
         </h2>
         <div class="hidden h-full py-1 sm:flex">
             <div class="h-full w-px bg-slate-300 dark:bg-navy-600"></div>
@@ -26,7 +26,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
             </li>
-            <li> Payment Methods</li>
+            <li>packages</li>
         </ul>
     </div>
 
@@ -125,7 +125,13 @@
                             </label>
                         </div>
 
-                         
+
+
+
+
+
+
+
 
                         <div class="mt-5">
                             <label class="block">
@@ -140,6 +146,19 @@
                               @enderror
                             </label>
                           </div>
+
+
+                          @foreach($items as $item)
+                          <label class="inline-flex items-center space-x-2">
+                            <input multiple
+                                name="item_id[]" value="{{ $item->id }}"
+                              class="form-checkbox is-basic h-5 w-5 rounded border-slate-400/70 checked:bg-slate-500 checked:border-slate-500 hover:border-slate-500 focus:border-slate-500 dark:border-navy-400 dark:checked:bg-navy-400"
+                              type="checkbox"
+                            />
+                            <p>{{ $item->key_en }}</p>
+                          </label>
+                          @endforeach
+
 
 
 

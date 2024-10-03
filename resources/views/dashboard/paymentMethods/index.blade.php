@@ -1,153 +1,194 @@
 @extends('dashboard.layouts.master')
+
+@section('title', 'user')
+
+@push('style')
+    <script src="{{ asset('SuperAdmin/assets/js/pages/components-modal.js') }}" defer=""></script>
+@endpush
+
 @section('main')
-<style>
-    .btn-custom-red {
-        background-color: red; /* لون الخلفية */
-        color: white; /* لون النص */
-    }
-
-    .btn-custom-red:hover {
-        background-color: darkred; /* لون الخلفية عند التحويم */
-    }
-
-    .btn-custom-red:focus {
-        background-color: darkred; /* لون الخلفية عند التركيز */
-    }
-
-    .btn-custom-red:active {
-        background-color: crimson; /* لون الخلفية عند النقر */
-    }
-</style>
-<main class="main-content w-full px-[var(--margin-x)] pb-8">
-    <div class="flex items-center space-x-4 py-5 lg:py-6">
-      <h2 class="text-xl font-medium text-slate-800 dark:text-navy-50 lg:text-2xl">
-        paymentMethods
-      </h2>
-      <div class="hidden h-full py-1 sm:flex">
-        <div class="h-full w-px bg-slate-300 dark:bg-navy-600"></div>
-      </div>
-      <ul class="hidden flex-wrap items-center space-x-2 sm:flex">
-        <li class="flex items-center space-x-2">
-          <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent" href="#">Components</a>
-          <svg x-ignore="" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-        </li>
-        <li>paymentMethods</li>
-      </ul>
-    </div>
-
-    <div class="grid grid-cols-1 gap-4 sm:gap-5 lg:gap-6">
-        <div class="flex justify-end space-x-2">
-
-            <a href="{{ route('PaymentMethod.create') }}" class="btn space-x-2 bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-              <span>Create</span>
-
-            </a>
-          </div>
-      <!-- From HTML Table -->
-      <div class="card pb-4">
-        <div class="my-3 flex h-8 items-center justify-between px-4 sm:px-5">
-          <h2 class="font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100 lg:text-base">
-            paymentMethods
-          </h2>
-
+    <main class="main-content w-full px-[var(--margin-x)] pb-8">
+        <div class="flex items-center space-x-4 py-5 lg:py-6">
+            <h2 class="text-xl font-medium text-slate-800 dark:text-navy-50 lg:text-2xl">
+                AiTech
+            </h2>
+            <div class="hidden h-full py-1 sm:flex">
+                <div class="h-full w-px bg-slate-300 dark:bg-navy-600"></div>
+            </div>
+            <ul class="hidden flex-wrap items-center space-x-2 sm:flex">
+                <li class="flex items-center space-x-2">
+                    <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
+                        href="{{ route('homePage') }}">Home</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </li>
+                <li>PaymentMethod list</li>
+            </ul>
         </div>
+
         <div>
-
-          <div x-data="" x-init="$el._x_grid =  new Gridjs.Grid({
-            from: $refs.table,
-            sort: true,
-            search: true,
-          }).render($refs.wrapper);">
-            <div class="is-scrollbar-hidden min-w-full overflow-x-auto">
-              <table x-ref="table" class="w-full text-left" style="display: none;">
-                <thead>
-                  <tr>
-                    <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                      #
-                    </th>
-                    <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                      Name
-                    </th>
-                    <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                      image
-                    </th>
-                    <th class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                       action
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-              </table>
-            </div>
-            <div>
-
-                <div x-ref="wrapper">
-                     <div role="complementary" class="gridjs gridjs-container" style="width: 100%;"><div class="gridjs-head">
-                        <div class="gridjs-search">
-                            <input type="search" placeholder="Type a keyword..." aria-label="Type a keyword..." class="gridjs-input gridjs-search-input"></div>
-                        </div>
-                        <div class="gridjs-wrapper" style="height: auto;">
-                            <table role="grid" class="gridjs-table" style="height: auto;">
-                                <thead class="gridjs-thead"><tr class="gridjs-tr"><th data-column-id="#" class="gridjs-th gridjs-th-sort" tabindex="0">
-                                    <div class="gridjs-th-content"> #</div>
-                                    <button tabindex="-1" aria-label="Sort column ascending" title="Sort column ascending" class="gridjs-sort gridjs-sort-neutral"></button>
-                                </th><th data-column-id="
-Name
-" class="gridjs-th gridjs-th-sort" tabindex="0"><div class="gridjs-th-content">
-                      Name
-                    </div><button tabindex="-1" aria-label="Sort column ascending" title="Sort column ascending" class="gridjs-sort gridjs-sort-neutral"></button></th><th data-column-id="
-Job
-" class="gridjs-th gridjs-th-sort" tabindex="0"><div class="gridjs-th-content">
-                      Job
-                    </div><button tabindex="-1" aria-label="Sort column ascending" title="Sort column ascending" class="gridjs-sort gridjs-sort-neutral"></button></th><th data-column-id="
-FavoriteColor
-" class="gridjs-th gridjs-th-sort" tabindex="0"><div class="gridjs-th-content">
-                      Favorite Color
-                    </div><button tabindex="-1" aria-label="Sort column ascending" title="Sort column ascending" class="gridjs-sort gridjs-sort-neutral"></button></th></tr></thead>
-                    <tbody class="gridjs-tbody">
-                        @foreach($data as $method)
-                        <tr class="gridjs-tr">
-                            <td data-column-id="#" class="gridjs-td">{{ $loop->index +1 }}
-                        </td><td data-column-id="Name" class="gridjs-td">{{ $method->name_en }}
-                        </td><td data-column-id="Job" class="gridjs-td"><img src="{{ $method->image }}" width="75" height="75" alt="">
-                        </td><<td data-column-id="FavoriteColor" class="gridjs-td">
-                            <div class="flex justify-end space-x-2">
-                                <a href="{{ route('PaymentMethod.edit', $method->id) }}" class="btn space-x-2 bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                                    <span>Edit</span>
-                                </a>
-
-                                <form action="{{ route('PaymentMethod.destroy', $method->id) }}" method="post" class="inline-block" onsubmit="return confirmDelete();">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-custom-red space-x-2">
-                                        <span>Delete</span>
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-
-                        <script>
-                            function confirmDelete() {
-                                return confirm("Are you sure you want to delete this payment method?");
-                            }
-                        </script>
-
-                    </tr>
-                        @endforeach
-
-                </tbody></table></div><div id="gridjs-temp" class="gridjs-temp"></div></div></div>
-            </div>
-          </div>
+            @include('dashboard.partials._session')
         </div>
-      </div>
+
+        <div class="grid grid-cols-1 gap-4 sm:gap-5 lg:gap-6">
+
+            <!-- Table With Filter -->
+            <div id="table-filter">
+                <div class="ac js-enabled" id="ac-4">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
+                            Table With PaymentMethod
+                        </h2>
+                        <div class="flex">
+                            {{-- @can('User-create') --}}
+
+                            <a href="{{ route('PaymentMethod.create') }}"
+                            class="btn space-x-2 bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                            <i class="fa-solid fa-plus"></i>
+                            <span> Add PaymentMethod </span>
+                        </a>
+                        {{-- @endcan --}}
+
+                        </div>
+                    </div>
+                    <div class="card mt-3">
+                        <div class="is-scrollbar-hidden min-w-full overflow-x-auto">
+                            <table class="is-hoverable w-full text-left">
+                                <thead>
+                                    <tr>
+                                        <th
+                                            class="whitespace-nowrap rounded-tl-lg bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                                            #
+                                        </th>
+                                        <th
+                                            class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                                            name
+                                        </th>
+
+                                        <th
+                                            class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                                            image
+                                        </th>
 
 
-      </div>
-    </div>
-  </main>
 
- @endsection
+                                        <th
+                                            class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($data as $PaymentMethod)
+                                        <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
+                                            <td class="whitespace-nowrap px-4 py-3 sm:px-5">{{ $loop->index +1 }}</td>
+                                            <td
+                                                class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
+                                                {{ $PaymentMethod->name_en }}
+                                            </td>
+
+
+
+                                            <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                                                <div class="avatar flex h-10 w-10">
+                                                    <img class="mask is-squircle" src="{{ asset('storage/uploads/images/' .  $PaymentMethod->image) }}"
+                                                        alt="avatar">
+                                                </div>
+                                            </td>
+
+
+
+                                            <td data-column-id="actions" class="gridjs-td">
+                                                <span>
+                                                    <div class="flex space-x-2">
+                                                        {{-- @can('User-list') --}}
+
+                                                        <a href="{{ route('PaymentMethod.show', $PaymentMethod->id) }}"
+                                                            class="btn h-8 w-8 p-0 text-success hover:bg-success/20 focus:bg-success/20 active:bg-success/25">
+                                                            <i class="fa-regular fa-eye"></i>
+                                                        </a>
+                                                        {{-- @endcan --}}
+                                                        {{-- @can('User-edit') --}}
+
+                                                        <a href="{{ route('PaymentMethod.edit', $PaymentMethod->id) }}"
+                                                            onclick="$notification({ text: 'Item edit action', variant: 'info' })"
+                                                            class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                        {{-- @endcan --}}
+                                                        {{-- @can('User-delete') --}}
+
+                                                        <button data-toggle="modal" data-target="#modal1"
+                                                            class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90 btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
+                                                            <i class="fa fa-trash-alt"></i>
+                                                        </button>
+
+
+                                                        <div class="modal fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden px-4 py-6 sm:px-5"
+                                                            id="modal1" role="dialog">
+                                                            <div class="modal-overlay absolute inset-0 bg-slate-900/60">
+                                                            </div>
+                                                            <div
+                                                                class="modal-content scrollbar-sm relative flex max-w-lg flex-col items-center overflow-y-auto rounded-lg bg-white px-4 py-10 text-center dark:bg-navy-700 sm:px-5">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    class="inline h-28 w-28 shrink-0 text-success"
+                                                                    fill="none" viewBox="0 0 24 24"
+                                                                    stroke="currentColor">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                                        stroke-width="2"
+                                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z">
+                                                                    </path>
+                                                                </svg>
+
+                                                                <div class="mt-4">
+                                                                    <h2 class="text-2xl text-slate-700 dark:text-navy-100">
+                                                                        Confirmed Delete
+                                                                    </h2>
+                                                                    <p class="mt-2">
+                                                                        Are you sure you want to delete this item?
+                                                                    </p>
+                                                                    <form action="{{ route('PaymentMethod.destroy', $PaymentMethod->id) }}"
+                                                                        method="post">
+                                                                        @method('delete')
+                                                                        @csrf
+                                                                        <button data-close-modal=""
+                                                                            class="btn mt-6 bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90">
+                                                                            submit
+                                                                        </button>
+                                                                    </form>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {{-- @endcan --}}
+
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div
+                            class="flex flex-col justify-between space-y-4 px-4 py-4 sm:flex-row sm:items-center sm:space-y-0 sm:px-5">
+                            <ol class="pagination space-x-1.5">
+                                {{ $data->links() }}
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+@endsection
+
+@push('scripts')
+@endpush

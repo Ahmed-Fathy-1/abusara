@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\SuperAdmin\Dashboard;
+namespace App\Http\Controllers\SuperAdmin\PaymentMethods;
 
+use App\Traits\Imageable;
 use Illuminate\Http\Request;
-use App\Models\SuperAdmin\PaymentMethod;
 use App\Http\Controllers\Controller;
+use App\Models\SuperAdmin\PaymentMethod;
 use App\Http\Requests\SuperAdmin\PaymentMethod\StoreRequest;
 
 class PaymentMethodController extends Controller
@@ -12,10 +13,11 @@ class PaymentMethodController extends Controller
     /**
      * Display a listing of the resource.
      */
+    use Imageable;
     public function index()
     {
 
-        $data = PaymentMethod::all();
+        $data = PaymentMethod::latest()->paginate(5);
         return view("dashboard.paymentMethods.index",compact("data"));
     }
 
@@ -34,12 +36,11 @@ class PaymentMethodController extends Controller
     {
 
         $data = $request->validated();
-        if(isset($data['image']))
-        {
-             $request->image;
+        if ($data['image'] && $data['image'] != null) {
+            $data['image'] = $this->setImageAttribute($data['image']);
         }
-        $data['user_id'] = '1';
-        $paymentMethod = PaymentMethod::create($request->all());
+        $data['user_id'] = auth()->user()->id;
+        $paymentMethod = PaymentMethod::create($data);
         return redirect()->route("PaymentMethod.index")->with("success","Created success");
     }
 
@@ -48,7 +49,8 @@ class PaymentMethodController extends Controller
      */
     public function show(string $id)
     {
-
+        $paymentMethod = PaymentMethod::find($id);
+        return view("dashboard.paymentMethods.show",compact("paymentMethod"));
     }
 
     /**
@@ -63,17 +65,24 @@ class PaymentMethodController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreRequest $request, string $id)
     {
 
 
-        if($request->image)
-        {
-            $request->image;
-        }
-        $request->user_id = '1';
+        // if($request->image)
+        // {
+        //     $request->image;
+        // }
+        // $request->user_id = '1';
+
+        $data = $request->validated();
+
+        $data['user_id'] = auth()->user()->id;
         $paymentMethod = PaymentMethod::find($id);
-        $paymentMethod->update($request->all());
+        if ($data['image'] && $data['image'] != null) {
+            $data['image'] = $this->setImageAttribute($data['image'], $paymentMethod->image);
+        }
+        $paymentMethod->update($data);
         return redirect()->route("PaymentMethod.index")->with("success","Updated success");
 
     }

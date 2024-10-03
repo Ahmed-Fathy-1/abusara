@@ -78,11 +78,14 @@
                             </div>
                         </label>
 
-
                         <div>
-                            <img id="imagePreview" src="{{ $settings->imageWithFullPath }}" alt="Current Image"
+                            <img id="imagePreview" src="{{ $settings->imageWithFullPath ?? asset('SuperAdmin/assets/images/100x100.png')}}" alt="Current Image"
                                 style="max-width: 150px;">
                         </div>
+
+
+
+
                         @error('image')
                             <span class="text-tiny+ text-error">{{ $message }}</span>
                         @enderror

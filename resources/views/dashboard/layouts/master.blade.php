@@ -16,7 +16,7 @@
           $setting = \App\Models\Setting::findOrFail(1);
       @endphp
       <link rel="icon" type="image/png" class="h-11 w-11" src="{{ asset('storage/uploads/images/settings/'.$setting->image) }}" />
-      
+
     {{-- <link rel="stylesheet" href="{{ asset(in_array(app()->getLocale(), ['ar']) ? 'assets/css/app-ar.css' : 'assets/css/app.css') }}">
     <script src="{{ asset(in_array(app()->getLocale(), ['ar']) ? 'assets/js/app-ar.js' : 'assets/js/app.js') }}" defer></script> --}}
 
@@ -25,7 +25,10 @@
     <script src="{{ asset('SuperAdmin/assets/js/app.js') }}" defer></script>
 
     @stack('style')
+
     <!-- Fonts -->
+    {{-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> --}}
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

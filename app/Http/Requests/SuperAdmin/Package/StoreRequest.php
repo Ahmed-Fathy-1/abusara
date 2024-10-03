@@ -30,6 +30,8 @@ class StoreRequest extends FormRequest
             'description_ar' => 'nullable|string|max:255',
             "status" => "nullable|boolean",
             // "user_id" => "required|integer|exists:users,id",
+            'item_id' => 'nullable|array',
+            'item_id.*' => 'exists:items,id',
         ];
     }
 }

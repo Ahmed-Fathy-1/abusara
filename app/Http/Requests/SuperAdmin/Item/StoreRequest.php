@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\SuperAdmin\PaymentMethod;
+namespace App\Http\Requests\SuperAdmin\Item;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,12 +22,9 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name_en" => "required|string|max:255",
-            "name_ar" => "required|string|max:255",
-            "image" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
-            "status" => "nullable|boolean",
-            // "user_id" => "required|integer|exists:users,id",
+           'key_en' => 'required|string|max:255',
+           'key_ar' => 'required|string|max:255',
+           'value' => 'required|string|max:255',
         ];
-
     }
 }

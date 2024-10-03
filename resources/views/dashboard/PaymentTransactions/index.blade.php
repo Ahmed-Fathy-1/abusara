@@ -4,8 +4,6 @@
 
 @push('style')
     <script src="{{ asset('SuperAdmin/assets/js/pages/components-modal.js') }}" defer=""></script>
-    
-
 @endpush
 
 @section('main')
@@ -26,7 +24,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </li>
-                <li>packages list</li>
+                <li>PaymentTransaction list</li>
             </ul>
         </div>
 
@@ -41,15 +39,15 @@
                 <div class="ac js-enabled" id="ac-4">
                     <div class="flex items-center justify-between">
                         <h2 class="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
-                            Table With packages
+                            Table With PaymentTransaction
                         </h2>
                         <div class="flex">
                             {{-- @can('User-create') --}}
 
-                            <a href="{{ route('packages.create') }}"
+                            <a href="{{ route('PaymentTransaction.create') }}"
                             class="btn space-x-2 bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
                             <i class="fa-solid fa-plus"></i>
-                            <span> Add packages </span>
+                            <span> Add PaymentTransaction </span>
                         </a>
                         {{-- @endcan --}}
 
@@ -66,18 +64,23 @@
                                         </th>
                                         <th
                                             class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                                            title
+                                            name user
                                         </th>
 
                                         <th
                                             class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                                            subtitle
+                                            name package
                                         </th>
 
                                         <th
-                                        class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
-                                        description
-                                    </th>
+                                            class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                                            total
+                                        </th>
+
+                                        <th
+                                            class="whitespace-nowrap bg-slate-200 px-4 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-5">
+                                            Invoice
+                                        </th>
 
 
 
@@ -88,27 +91,44 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data as $packages)
+                                    @foreach ($data as $PaymentTransaction)
                                         <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
                                             <td class="whitespace-nowrap px-4 py-3 sm:px-5">{{ $loop->index +1 }}</td>
                                             <td
                                                 class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
-                                                {{ $packages->title_en }}
+                                                {{ $PaymentTransaction->user->name }}
                                             </td>
 
                                             <td
                                                 class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
-                                                {{ $packages->subtitle_en }}
+                                                {{  $PaymentTransaction->package->title_en }}
                                             </td>
 
                                             <td
                                             class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
-                                            {{ $packages->description_en }}
+                                            {{  $PaymentTransaction->total }}
                                         </td>
 
 
 
+                                            <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                                                <div class="avatar flex h-10 w-10">
+                                                    @if(isset($PaymentTransaction->image))
 
+                                                    <img class="mask is-squircle" src="{{ asset('storage/uploads/images/' .  $PaymentTransaction->image)  }}"
+                                                    alt="avatar">
+
+                                                    @else
+
+                                                    <img class="mask is-squircle" src="{{ asset('SuperAdmin/assets/images/100x100.png') }}"
+                                                    alt="avatar">
+
+                                                    @endif
+
+
+
+                                                </div>
+                                            </td>
 
 
 
@@ -117,14 +137,14 @@
                                                     <div class="flex space-x-2">
                                                         {{-- @can('User-list') --}}
 
-                                                        {{-- <a href="{{ route('users.show', $user->id) }}"
+                                                        <a href="{{ route('PaymentTransaction.show', $PaymentTransaction->id) }}"
                                                             class="btn h-8 w-8 p-0 text-success hover:bg-success/20 focus:bg-success/20 active:bg-success/25">
                                                             <i class="fa-regular fa-eye"></i>
-                                                        </a> --}}
+                                                        </a>
                                                         {{-- @endcan --}}
                                                         {{-- @can('User-edit') --}}
 
-                                                        <a href="{{ route('packages.edit', $packages->id) }}"
+                                                        <a href="{{ route('PaymentTransaction.edit', $PaymentTransaction->id) }}"
                                                             onclick="$notification({ text: 'Item edit action', variant: 'info' })"
                                                             class="btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
                                                             <i class="fa fa-edit"></i>
@@ -161,7 +181,7 @@
                                                                     <p class="mt-2">
                                                                         Are you sure you want to delete this item?
                                                                     </p>
-                                                                    <form action="{{ route('packages.destroy', $packages->id) }}"
+                                                                    <form action="{{ route('PaymentTransaction.destroy', $PaymentTransaction->id) }}"
                                                                         method="post">
                                                                         @method('delete')
                                                                         @csrf
@@ -203,5 +223,4 @@
 @endsection
 
 @push('scripts')
-
 @endpush

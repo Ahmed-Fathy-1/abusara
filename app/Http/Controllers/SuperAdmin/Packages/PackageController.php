@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\SuperAdmin\Dashboard;
+namespace App\Http\Controllers\SuperAdmin\Packages;
 
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use App\Models\SuperAdmin\Item;
 use App\Models\SuperAdmin\Package;
 use App\Http\Controllers\Controller;
+use App\Models\SuperAdmin\PackageItem;
 use App\Http\Requests\SuperAdmin\Package\StoreRequest;
 
 class PackageController extends Controller
@@ -12,7 +15,7 @@ class PackageController extends Controller
     public function index()
     {
 
-        $data = Package::all();
+        $data = Package::latest()->paginate(5);
         return view("dashboard.packages.index",compact("data"));
     }
 
@@ -21,21 +24,30 @@ class PackageController extends Controller
      */
     public function create()
     {
-          return view("dashboard.packages.add");
+        $items = Item::all();
+           return view("dashboard.packages.add" ,compact("items"));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
+
     public function store(StoreRequest $request)
     {
+    $data = $request->validated();
+    $data['user_id'] = auth()->user()->id;
 
-        $data = $request->validated();
+    $package = Package::create($data);
 
-        // $data['user_id'] = '1';
-        $Package = Package::create($data);
-        return redirect()->route("packages.index")->with("success","Created success");
+
+    if (isset($request->item_id) && is_array($request->item_id)) {
+         $package->items()->syncWithoutDetaching($request->item_id);
     }
+
+    return redirect()->route("packages.index")->with("success", "Created successfully");
+    }
+
+
+
+
 
     /**
      * Display the specified resource.
@@ -51,7 +63,8 @@ class PackageController extends Controller
     public function edit(string $id)
     {
         $Package = Package::find($id);
-       return view("dashboard.packages.edit",compact("Package"));
+        $items = Item::all();
+       return view("dashboard.packages.edit",compact("Package",'items'));
     }
 
     /**
@@ -61,10 +74,13 @@ class PackageController extends Controller
     {
 
 
-    $data = $request->validated();
-       $data['user_id'] = '1';
+        $data = $request->validated();
+        $data['user_id'] = auth()->user()->id;
         $Package = Package::find($id);
         $Package->update($data);
+        if ($request->item_id && is_array($request->item_id)) {
+            $Package->items()->sync($request->item_id);
+        }
         return redirect()->route("packages.index")->with("success","Updated success");
 
     }
