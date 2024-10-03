@@ -1,14 +1,12 @@
 <?php
 
-use App\Http\Controllers\SuperAdmin\Dashboard\PackageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Admin\Auth\TenantController;
+use App\Http\Controllers\SuperAdmin\Domains\TenantController;
 use App\Http\Controllers\SuperAdmin\Settings\SettingController;
 use App\Http\Controllers\SuperAdmin\Auth\AuthController;
 use App\Http\Controllers\SuperAdmin\Roles\RoleController;
 use App\Http\Controllers\SuperAdmin\Users\UserController;
->>>>>>> bee4aa534135e6a334e6b23334306b1fe5e32beb
 
 
 /*
@@ -27,12 +25,11 @@ foreach (config('tenancy.central_domains') as $domain) {
     Route::domain($domain)->group(function () {
         // your actual routes
 
-        // Route::group(['middleware' => ['role:Super Admin']], function () {
+        Route::group(['middleware' => ['role:Super Admin']], function () {
 
-        Route::get('/', function () {
-            return redirect()->route('homePage');
-        });
-
+            Route::get('/', function () {
+                return redirect()->route('homePage');
+            });
 
             Route::get('/home', [HomeController::class, 'index'])->name('homePage');
 
